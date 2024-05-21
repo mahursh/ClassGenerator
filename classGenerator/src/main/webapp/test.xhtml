@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+
+
+
+</h:head>
+
+<h:body>
+    <f:view>
+
+
+        <h:form id="class-generator-form" onclick="" onsubmit="">
+
+
+            <h:outputLabel value="Class name: " required="true" style="font-weight: bold;"/>
+            <h:inputText id="class-name" label="" value="#{createFileBeanSecond.className}" placeholder="Class Name"
+                         styleClass="form-control"
+                         style="width: 300px; margin-bottom: 10px;">
+            </h:inputText>
+            <br/><br/>
+
+
+            <h:panelGrid columns="2" style="width: 500px">
+
+                <h:outputText value="Field Name:" style="font-weight: bold;"/>
+                <h:inputText value="#{createFileBeanSecond.fieldName}" placeholder="Field Name"
+                             styleClass="form-control" style="width: 200px;"/>
+
+                <h:outputText value="Field Type:" style="font-weight: bold;"/>
+                <h:inputText value="#{createFileBeanSecond.fieldType}" placeholder="Field Type"
+                             styleClass="form-control" style="width: 200px;"/>
+
+                <h:commandButton value="save field" action="#{createFileBeanSecond.addField}">
+                    <f:ajax render="@form" execute="@form"/>
+                </h:commandButton>
+
+            </h:panelGrid>
+
+
+            <h:dataTable id="fields-table" value="#{createFileBeanSecond}" varStatus="loop">
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Field Name"/>
+                    </f:facet>
+                    <ui:repeat value="#{createFileBeanSecond.fields.keySet()}" var="key">
+                        <h:panelGrid columns="2" rendered="#{loop.index % 2 == 0}">
+                            <h:outputText value="#{key}"/>
+                        </h:panelGrid>
+                    </ui:repeat>
+                </h:column>
+
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Field Type"/>
+                    </f:facet>
+                    <ui:repeat value="#{createFileBeanSecond.fields.values()}" var="value">
+                        <h:panelGrid columns="2" rendered="#{loop.index % 2 == 0}">
+                            <h:outputText value="#{value}"/>
+                        </h:panelGrid>
+                    </ui:repeat>
+                </h:column>
+
+
+            </h:dataTable>
+
+
+
+<!--            TODO: empty createFileBeanSecond.className  is not working and when i push creat button while class name input is empty ,it throws exception  -->
+            <h:commandButton value="create" action="#{createFileBeanSecond.createJavaFile()}"
+                             disabled="#{empty createFileBeanSecond.fields and empty createFileBeanSecond.className}"/>
+
+
+        </h:form>
+
+
+<!--        TODO: action="#{createFileBeanSecond.clearFields()}" doese not change anything-->
+        <h:commandButton value="Next Class"  onclick="clearFieldsAndReload()" />
+    </f:view>
+
+
+
+    <script src="assets/js/flushesAndReloads.js" type="text/javascript"></script>
+
+
+
+
+</h:body>
+</html>
