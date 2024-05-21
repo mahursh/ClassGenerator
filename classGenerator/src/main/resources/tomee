@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<tomee>-->
+<!--    <Container id="tomee-webapp" type="webapp">-->
+<!--        <Resource id="ThymeleafTemplateResolver" type="org.thymeleaf.templateresolver.ClassLoaderTemplateResolver">-->
+<!--            prefix=/-->
+<!--            suffix=.html-->
+<!--            templateMode=HTML-->
+<!--        </Resource>-->
+<!--    </Container>-->
+
+
+<!--    </tomee>-->
